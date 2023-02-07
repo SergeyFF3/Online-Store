@@ -1,0 +1,27 @@
+.NotFound {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.btn {
+  cursor: pointer;
+  background: greenyellow;
+  color: white;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 20px;
+  transition: .3s;
+
+  &:hover {
+    box-shadow: 0 0 8px 1px greenyellow;
+    transition: .3s;
+
+  }
+}

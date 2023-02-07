@@ -1,0 +1,33 @@
+.ProductCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  min-width: 200px;
+  width: 100%;
+  height: 250px;
+  background: greenyellow;
+  margin-bottom: 8px;
+  border-radius: 20px;
+}
+
+.bottomRow {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 0 10px;
+  font-size: 14px;
+  border: 2px solid greenyellow;
+  border-radius: 20px;
+  background: white;
+  transition: .2s;
+
+  &:hover {
+    box-shadow: 0 0 10px 2px greenyellow;
+  }
+}

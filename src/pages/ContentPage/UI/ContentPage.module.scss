@@ -1,0 +1,21 @@
+.content {
+  padding: 30px 10px;
+  display: flex;
+  width: 100%;
+}
+
+.wrapper {
+  display: inline-block;
+  padding: 5px 0 5px 15px;
+  flex-grow: 1;
+}
+
+.title {
+  margin-bottom: 15px;
+}
+
+.listCard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}

@@ -1,0 +1,25 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input,
+button,
+textarea,
+select {
+  margin: 0;
+  font: inherit;
+}
+
+.app {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  line-height: 26px;
+  color: #131313;
+  margin: 0 auto;
+  max-width: 1050px;
+  width: 100%;
+  padding: 8px;
+}

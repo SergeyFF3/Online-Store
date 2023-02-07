@@ -1,0 +1,16 @@
+.Sidebar {
+  min-width: 130px;
+  border-right: 2px solid greenyellow;
+  padding: 10px;
+}
+
+.brand {
+  cursor: pointer;
+  transition: .2s;
+  padding: 5px 0;
+
+  &:hover {
+    transform: scale(1.2);
+    color: greenyellow;
+  }
+}
