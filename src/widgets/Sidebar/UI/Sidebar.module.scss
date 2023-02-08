@@ -1,15 +1,26 @@
 .Sidebar {
   min-width: 130px;
   border-right: 2px solid greenyellow;
-  padding: 10px;
+  padding: 7px 10px;
 }
 
 .brand {
   cursor: pointer;
   transition: .2s;
   padding: 5px 0;
+  display: block;
+  background: none;
+  border: none;
 
-  &:hover {
+  &:first-child {
+    padding: 0;
+  }
+
+  &:hover{
+    color: greenyellow;
+  }
+
+  &:focus {
     transform: scale(1.2);
     color: greenyellow;
   }

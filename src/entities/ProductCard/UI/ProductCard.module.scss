@@ -1,6 +1,11 @@
 .ProductCard {
   display: flex;
   flex-direction: column;
+  transition: .2s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .image {

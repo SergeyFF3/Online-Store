@@ -1,0 +1,34 @@
+.ShoppingCartItem {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+  border-bottom: 2px solid greenyellow;
+}
+
+.column {
+  position: relative;
+  flex: 1 1 13%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  padding-bottom: 10px;
+
+  &:first-child {
+    flex: 1 1 61%;
+    justify-content: start;
+  }
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  background: greenyellow;
+  margin-right: 10px;
+}
+
+.delete {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}

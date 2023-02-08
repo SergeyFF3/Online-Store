@@ -15,7 +15,7 @@ const HeaderCatalog = () => {
         <header className={cls.header}>
            <div>LOGO</div>
             <div className={cls.cart}>
-                <p></p>
+                <p className={cls.abs}></p>
                 <img
                     alt="cart"
                     src={Cart}

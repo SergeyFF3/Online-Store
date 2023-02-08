@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Routes } from 'react-router-dom';
 import './styles/index.scss'
 import {ContentPage} from "pages/ContentPage";
-import { Cart } from 'entities/Cart';
+import { CartPage } from 'pages/CartPage';
 import { NotFound } from 'pages/NotFound';
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
         <div className="app">
             <Routes>
                 <Route path='/' element={<ContentPage/>}/>
-                <Route path='/cart' element={<Cart/>}/>
+                <Route path='/cart' element={<CartPage/>}/>
                 <Route path='*' element={<NotFound/>}/>
             </Routes>
         </div>

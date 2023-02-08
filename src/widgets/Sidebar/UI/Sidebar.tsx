@@ -8,14 +8,14 @@ const Sidebar = () => {
 
     return (
         <div className={cls.Sidebar}>
-            <p>All Brands</p>
+            <button className={cls.brand}>All Brands</button>
             {brands.map((brand) => {
-                return <p
+                return <button
                     key={brand.id}
                     className={cls.brand}
                 >
                     {brand.title}
-                </p>
+                </button>
             })}
         </div>
     );
