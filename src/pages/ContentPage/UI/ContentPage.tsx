@@ -4,17 +4,29 @@ import {Sidebar} from 'widgets/Sidebar';
 import cls from './ContentPage.module.scss'
 import {Product, ProductCard} from "entities/ProductCard";
 import {useSelector} from "react-redux";
-import {getShoppingCartData} from "../../CartPage";
-
-const products = require('shared/json/products.json') as Product[]
+import {getShoppingCartData} from "pages/CartPage";
+import {useAppDispatch} from "app/StoreProvider/store";
+import {cartActions} from 'pages/CartPage/model/slices/cartSlice';
+import {getContentData} from "../model/selectors/getContentData";
 
 const ContentPage = () => {
+    const dispatch = useAppDispatch()
 
     const cartData = useSelector(getShoppingCartData)
 
-    const buyProduct = React.useCallback( (value: Product, id: number) => {
-        cartData?.push(value)
-    }, [cartData])
+    const products = useSelector(getContentData)
+
+
+
+    // const filterCatalog = React.useCallback((value?: number) => {
+    //     console.log(value)
+    //    return  productsForm.filter(value1 => value1.id === value)
+    //
+    // }, [])
+
+    const addProductInCart = React.useCallback((value: Product) => {
+        dispatch(cartActions.addProductInCart(value))
+    }, [dispatch])
 
     return (
         <>
@@ -28,7 +40,7 @@ const ContentPage = () => {
                             return <ProductCard
                                 key={product.id}
                                 product={product}
-                                // buyProduct={buyProduct(product)}
+                                addProductInCart={() => addProductInCart(product)}
                             />
                         })}
                     </div>

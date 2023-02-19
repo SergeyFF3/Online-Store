@@ -16,7 +16,7 @@ const ShoppingCartItem = ({product}: ShoppingCartItemProps) => {
                 <p>{product?.title}</p>
             </div>
             <div className={cls.column}>{product?.regular_price?.value}</div>
-            <div className={cls.column}>1</div>
+            <div className={cls.column}></div>
             <div className={cls.column}>1
                 <img alt="#" src={Delete} className={cls.delete}/>
             </div>
