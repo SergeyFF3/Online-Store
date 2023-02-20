@@ -5,15 +5,23 @@ import {ShoppingCartItem} from "entities/ShoppingCartItem";
 import {useSelector} from "react-redux";
 import {
     getShoppingCartData,
-    getShoppingCartIsLoading
+    getShoppingCartIsLoading, getShoppingCartTotalPrice
 } from "../model/selectors/getShoppingCartData";
-import {Product} from "../../../entities/ProductCard";
+import {Product} from "entities/ProductCard";
+import {useAppDispatch} from "../../../app/StoreProvider/store";
+import {cartActions} from '../model/slices/cartSlice';
 
 const CartPage = () => {
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
     const cartData = useSelector(getShoppingCartData)
+    const totalPrice = useSelector(getShoppingCartTotalPrice)
     const isLoading = useSelector(getShoppingCartIsLoading)
+
+    const deleteProduct = React.useCallback((obj: Product) => {
+        dispatch(cartActions.deleteProduct(obj))
+    }, [dispatch])
 
     const onBackPage = React.useCallback(() => {
         navigate(-1)
@@ -51,17 +59,22 @@ const CartPage = () => {
                 <li className={cls.column}>Total</li>
             </ul>
             {cartData?.length === 0
-                ? null
+                ? <h1 className={cls.title}>The cart is empty</h1>
                 : cartData?.map((product) => {
                     return (
                         <ShoppingCartItem
                             key={product.id}
                             product={product}
+                            deleteProduct={deleteProduct}
                         />
                     )
                 })}
             <div className={cls.bottomRow}>
-                <h1 className={cls.subtotal}>Subtotal: </h1>
+                {
+                    totalPrice && totalPrice > 0
+                        ? totalPrice
+                        : <h1 className={cls.subtotal}>Subtotal: </h1>
+                }
                 <button className={cls.btn}>Checkout</button>
             </div>
         </>

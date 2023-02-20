@@ -3,7 +3,7 @@ import {CartSchema} from "../types/cartSchema";
 import {Product} from "entities/ProductCard";
 
 const initialState: CartSchema = {
-    cartData: [],
+    cartData: []
 }
 
 export const cartSlice = createSlice({
@@ -11,13 +11,22 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addProductInCart(state, action: PayloadAction<Product>) {
-           const findProduct = state.cartData?.find((obj: Product) => obj.id === action.payload.id)
+           const findProduct = state.cartData?.find((obj) => obj.id === action.payload.id)
 
-            if (findProduct) findProduct.count++
-            else state.cartData.push({...action.payload, count})
+            if (findProduct?.count) {
+                findProduct.count++
+            } else {
+                state.cartData?.push({...action.payload, count: 1})
+            }
+
+            // state.totalPrice = state.cartData?.reduce((sum?: number, obj?: Product) => {
+            //     if (obj?.regular_price?.value && obj.count && sum) {
+            //         return obj?.regular_price?.value * obj?.count + sum
+            //     }
+            // }, 0)
         },
         deleteProduct(state, action: PayloadAction<Product>) {
-            // state.cartData.filter(value => action.payload !== value)
+           state.cartData = state.cartData?.filter(obj => obj.id !== action.payload)
         }
     }
 })

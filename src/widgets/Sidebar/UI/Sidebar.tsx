@@ -10,10 +10,10 @@ interface SidebarProps {
 
 const brands = require('shared/json/brands.json') as Brand[]
 
-const Sidebar = ({filterCatalog}: SidebarProps) => {
+const Sidebar = (props: SidebarProps) => {
     const dispatch = useAppDispatch()
 
-    const sortProducts = useCallback((value: number) => {
+    const sortProducts = useCallback((value: Brand) => {
         dispatch(contentActions.sortProducts(value))
     }, [dispatch])
 
@@ -24,8 +24,7 @@ const Sidebar = ({filterCatalog}: SidebarProps) => {
                 return <button
                     key={brand.id}
                     className={cls.brand}
-                    onClick={() => sortProducts(brand.id)}
-                    // onClick={filterCatalog && (() => filterCatalog(brand.id))}
+                    onClick={() => sortProducts(brand)}
                 >
                     {brand.title}
                 </button>

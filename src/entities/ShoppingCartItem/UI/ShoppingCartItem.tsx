@@ -5,9 +5,10 @@ import {Product} from "entities/ProductCard";
 
 interface ShoppingCartItemProps {
     product: Product
+    deleteProduct?: (obj: Product) => void
 }
 
-const ShoppingCartItem = ({product}: ShoppingCartItemProps) => {
+const ShoppingCartItem = ({product, deleteProduct}: ShoppingCartItemProps) => {
 
     return (
         <div className={cls.ShoppingCartItem}>
@@ -18,7 +19,7 @@ const ShoppingCartItem = ({product}: ShoppingCartItemProps) => {
             <div className={cls.column}>{product?.regular_price?.value}</div>
             <div className={cls.column}></div>
             <div className={cls.column}>1
-                <img alt="#" src={Delete} className={cls.delete}/>
+                <img alt="#" src={Delete} onClick={deleteProduct && (() => deleteProduct(product))} className={cls.delete}/>
             </div>
         </div>
     );

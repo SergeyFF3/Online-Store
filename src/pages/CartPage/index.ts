@@ -3,7 +3,6 @@ export { CartPage }
 
 export {
     getShoppingCartIsLoading,
-    getShoppingCartError,
     getShoppingCartData
 } from './model/selectors/getShoppingCartData'
 

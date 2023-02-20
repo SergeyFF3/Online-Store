@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {ContentSchema} from "../types/contentSchema";
 import {Product} from "entities/ProductCard";
+import {Brand} from "../../../../widgets/Sidebar/model/types";
 
 const products = require('shared/json/products.json') as Product[]
 
@@ -13,8 +14,8 @@ export const contentSlice = createSlice({
     name: 'content',
     initialState,
     reducers: {
-        sortProducts(state, action: PayloadAction<number>){
-            state.contentData?.filter((value) => action.payload !== value)
+        sortProducts(state, action: PayloadAction<Brand>){
+          state.contentData =  state.contentData?.filter((obj) => obj.brand === action.payload.id)
         }
     }
 })

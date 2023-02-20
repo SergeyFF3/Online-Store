@@ -11,4 +11,5 @@ export interface Product {
     regular_price?: RegularPrice
     image?: string
     brand?: number
+    count?: number | null
 }
