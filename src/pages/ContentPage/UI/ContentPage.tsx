@@ -15,7 +15,6 @@ const ContentPage = () => {
 
     const addProductInCart = React.useCallback((obj: Product) => {
         dispatch(cartActions.addProductInCart(obj))
-        console.log(obj.count)
     }, [dispatch])
 
     return (
@@ -30,8 +29,7 @@ const ContentPage = () => {
                             return <ProductCard
                                 key={product.id}
                                 product={product}
-                                addProductInCart={() => addProductInCart(product)}
-                            />
+                                addProductInCart={addProductInCart}/>
                         })}
                     </div>
                 </div>

@@ -5,7 +5,8 @@ import {ShoppingCartItem} from "entities/ShoppingCartItem";
 import {useSelector} from "react-redux";
 import {
     getShoppingCartData,
-    getShoppingCartIsLoading, getShoppingCartTotalPrice
+    getShoppingCartDisabled,
+    getShoppingCartTotalPrice
 } from "../model/selectors/getShoppingCartData";
 import {Product} from "entities/ProductCard";
 import {useAppDispatch} from "../../../app/StoreProvider/store";
@@ -16,41 +17,38 @@ const CartPage = () => {
     const navigate = useNavigate()
 
     const cartData = useSelector(getShoppingCartData)
+    const disabled = useSelector(getShoppingCartDisabled)
     const totalPrice = useSelector(getShoppingCartTotalPrice)
-    const isLoading = useSelector(getShoppingCartIsLoading)
+
+    const plusProduct = React.useCallback((obj: Product) => {
+        dispatch(cartActions.addProductInCart(obj))
+    }, [dispatch])
+
+    const minusProduct = React.useCallback((obj: Product) => {
+        dispatch(cartActions.minusProduct(obj))
+    }, [dispatch])
 
     const deleteProduct = React.useCallback((obj: Product) => {
         dispatch(cartActions.deleteProduct(obj))
+    }, [dispatch])
+
+    const clearCart = React.useCallback(() => {
+        dispatch(cartActions.clearCart())
     }, [dispatch])
 
     const onBackPage = React.useCallback(() => {
         navigate(-1)
     }, [navigate])
 
-    function subtotal(arr: Product[]) {
-        let result = 0
-
-        for (let i = 0; i < arr?.length; i++) {
-            // result += arr[i]?.regular_price?.value
-        }
-        return result
-    }
-
-    if (isLoading) {
-        return (
-            <>
-                <header className={cls.header}>LOGO</header>
-                <h1 className={cls.loading}>Loading...</h1>
-            </>
-        )
-    }
-
     return (
         <>
             <header className={cls.header}>LOGO</header>
             <div className={cls.shopWrapper}>
                 <h1>Shopping cart</h1>
-                <button className={cls.btn} onClick={onBackPage}>Back</button>
+                <div>
+                    <button className={cls.btn} onClick={onBackPage}>Back</button>
+                    <button className={cls.btn} onClick={clearCart}>Clear cart</button>
+                </div>
             </div>
             <ul className={cls.table}>
                 <li className={cls.column}>Item</li>
@@ -66,15 +64,14 @@ const CartPage = () => {
                             key={product.id}
                             product={product}
                             deleteProduct={deleteProduct}
+                            plusProduct={plusProduct}
+                            minusProduct={minusProduct}
+                            disabled={disabled}
                         />
                     )
                 })}
             <div className={cls.bottomRow}>
-                {
-                    totalPrice && totalPrice > 0
-                        ? totalPrice
-                        : <h1 className={cls.subtotal}>Subtotal: </h1>
-                }
+                <h1 className={cls.subtotal}>Subtotal: {totalPrice.toFixed(2)}</h1>
                 <button className={cls.btn}>Checkout</button>
             </div>
         </>

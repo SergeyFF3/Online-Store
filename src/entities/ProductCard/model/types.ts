@@ -12,4 +12,5 @@ export interface Product {
     image?: string
     brand?: number
     count?: number | null
+    disabled
 }

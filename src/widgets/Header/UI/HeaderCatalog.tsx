@@ -6,7 +6,6 @@ import {useSelector} from "react-redux";
 import {getShoppingCartData} from "pages/CartPage";
 
 const HeaderCatalog = () => {
-
     const navigate = useNavigate()
 
     const cartData = useSelector(getShoppingCartData)

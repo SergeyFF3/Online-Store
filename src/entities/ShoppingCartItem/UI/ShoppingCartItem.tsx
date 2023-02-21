@@ -5,10 +5,21 @@ import {Product} from "entities/ProductCard";
 
 interface ShoppingCartItemProps {
     product: Product
+    disabled: boolean
     deleteProduct?: (obj: Product) => void
+    minusProduct?: (obj: Product) => void
+    plusProduct?: (obj: Product) => void
 }
 
-const ShoppingCartItem = ({product, deleteProduct}: ShoppingCartItemProps) => {
+const ShoppingCartItem = (props: ShoppingCartItemProps) => {
+
+const {
+    product,
+    disabled,
+    deleteProduct,
+    minusProduct,
+    plusProduct
+} = props
 
     return (
         <div className={cls.ShoppingCartItem}>
@@ -17,9 +28,24 @@ const ShoppingCartItem = ({product, deleteProduct}: ShoppingCartItemProps) => {
                 <p>{product?.title}</p>
             </div>
             <div className={cls.column}>{product?.regular_price?.value}</div>
-            <div className={cls.column}></div>
-            <div className={cls.column}>1
-                <img alt="#" src={Delete} onClick={deleteProduct && (() => deleteProduct(product))} className={cls.delete}/>
+            <div className={cls.column}>
+               <button
+                   className={cls.span}
+                   disabled={product.disabled}
+                   onClick={() => minusProduct(product)}>
+                   -
+               </button>
+               <span>{product.count}</span>
+               <button
+                   className={cls.span}
+                   onClick={() => plusProduct(product)}>
+                   +
+               </button>
+            </div>
+            <div className={cls.column}>
+                {(product.regular_price.value * product.count).toFixed(2)}
+                <img className={cls.delete} alt="#" src={Delete}
+                     onClick={deleteProduct && (() => deleteProduct(product))}/>
             </div>
         </div>
     );

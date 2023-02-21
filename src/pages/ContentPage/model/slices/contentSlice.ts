@@ -1,13 +1,12 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {ContentSchema} from "../types/contentSchema";
 import {Product} from "entities/ProductCard";
-import {Brand} from "../../../../widgets/Sidebar/model/types";
+import {Brand} from "widgets/Sidebar/model/types";
 
 const products = require('shared/json/products.json') as Product[]
 
 const initialState: ContentSchema = {
-    contentData: products,
-    isLoading: false
+    contentData: products
 }
 
 export const contentSlice = createSlice({
